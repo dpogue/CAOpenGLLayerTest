@@ -27,7 +27,7 @@ void PipelineLayer::IInitLayerClass() {
 }
 
 void PipelineLayer::IInitLayer() {
-    fLayer = class_createInstance(PipelineLayer::LayerClass, 0);
+    fLayer = (CALayerType* (*)())objc_msgSend(LayerClass, sel_getUid("layer"));
     PipelineLayer** vars = (PipelineLayer**)object_getIndexedIvars(fLayer);
     vars[0] = this;
 }
