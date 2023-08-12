@@ -1,9 +1,10 @@
 class PipelineLayer
 {
     typedef struct objc_object* CALayerType;
+    typedef struct objc_class* Class;
 
 protected:
-    static void* LayerClass;
+    static Class LayerClass;
     CALayerType fLayer;
 
     static void IInitLayerClass();
