@@ -1,4 +1,5 @@
 #include "PipelineLayer.h"
+#include "pfGLRenderLayer.hpp"
 #include <objc/objc-runtime.h>
 #include <OpenGL/gl3.h>
 #import <QuartzCore/QuartzCore.h>
@@ -44,6 +45,6 @@ PipelineLayer::PipelineLayer() : fLayer(nullptr) {
     IInitLayer();
 }
 
-PipelineLayer::CALayerType PipelineLayer::getLayer() const {
-    return fLayer;
+pfGLRenderLayer* PipelineLayer::getLayer() const {
+    return pfGLRenderLayer::getLayer();
 }

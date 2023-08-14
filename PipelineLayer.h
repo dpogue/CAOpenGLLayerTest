@@ -1,3 +1,5 @@
+class pfGLRenderLayer;
+
 class PipelineLayer
 {
     typedef struct objc_object* CALayerType;
@@ -13,5 +15,5 @@ protected:
 public:
     PipelineLayer();
 
-    CALayerType getLayer() const;
+    pfGLRenderLayer* getLayer() const;
 };

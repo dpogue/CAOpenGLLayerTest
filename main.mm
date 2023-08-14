@@ -25,7 +25,6 @@
     [self.layerHostView setWantsBestResolutionOpenGLSurface:YES];
 
     [self.window setTitle:@"Uru"];
-    //[self.window makeMainWindow];
     [self.window orderFrontRegardless];
     [self.window.contentView addSubview:self.layerHostView];
 
