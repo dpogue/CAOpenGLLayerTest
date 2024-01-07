@@ -9,8 +9,13 @@
 
 #include "NSObject.hpp"
 
+#if defined(__GNU_LIBOBJC__)
 typedef struct _CGLContextObject* CGLContextObj;
 typedef struct _CGLPixelFormatObject* CGLPixelFormatObj;
+struct CVTimeStamp;
+#else
+#include <QuartzCore/QuartzCore.h>
+#endif
 
 namespace PGL
 {
@@ -21,7 +26,7 @@ private:
     static Class kClass;
 
 
-    static void drawInCGLContext(Layer* self, SEL cmd, CGLContextObj ctx, CGLPixelFormatObj pf, CFTimeInterval t, const struct CVTimeStamp* ts);
+    static void drawInCGLContext(Layer* self, SEL cmd, CGLContextObj ctx, CGLPixelFormatObj pf, CFTimeInterval t, const CVTimeStamp* ts);
 
 public:
     static class Layer* layer();

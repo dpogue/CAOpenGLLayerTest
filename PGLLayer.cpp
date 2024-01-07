@@ -12,7 +12,6 @@
 #include <GL/gl.h>
 #else
 #define GL_SILENCE_DEPRECATION
-#include <QuartzCore/QuartzCore.h>
 #if __has_include(<OpenGL/gl3.h>)
 #include <OpenGL/gl3.h>
 #else
@@ -37,7 +36,7 @@ Class PGL::Layer::kClass = []{
     return klass;
 }();
 
-void PGL::Layer::drawInCGLContext(PGL::Layer* self, SEL cmd, CGLContextObj ctx, CGLPixelFormatObj pf, CFTimeInterval t, const struct CVTimeStamp* ts)
+void PGL::Layer::drawInCGLContext(PGL::Layer* self, SEL cmd, CGLContextObj ctx, CGLPixelFormatObj pf, CFTimeInterval t, const CVTimeStamp* ts)
 {
 #if !defined(__GNU_LIBOBJC__)
     CGLSetCurrentContext(ctx);

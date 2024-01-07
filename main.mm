@@ -5,12 +5,22 @@
 @class CALayer;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
+{
+    NSWindow* _window;
+    NSView* _layerHostView;
+    CALayer* _layer;
+}
 @property (assign) IBOutlet NSWindow *window;
 @property (strong) IBOutlet NSView *layerHostView;
 @property (strong, nonatomic) CALayer *layer;
 @end
 
 @implementation AppDelegate
+
+@synthesize window = _window;
+@synthesize layerHostView = _layerHostView;
+@synthesize layer = _layer;
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     NSUInteger windowStyle = (NSTitledWindowMask  | NSClosableWindowMask | NSResizableWindowMask);
@@ -20,7 +30,9 @@
     self.layerHostView = [[NSView alloc] initWithFrame:[[self.window contentView] bounds]];
 
     [self.layerHostView setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
-    [self.layerHostView setWantsBestResolutionOpenGLSurface:YES];
+    if ([self.layerHostView respondsToSelector:@selector(setWantsBestResolutionOpenGLSurface:)]) {
+        [self.layerHostView setWantsBestResolutionOpenGLSurface:YES];
+    }
 
     [self.window setTitle:@"Uru"];
     [self.window orderFrontRegardless];
@@ -32,7 +44,7 @@
     self.layer = (CALayer*)PGL::Layer::layer();
 #endif
     [self.layer setAutoresizingMask:kCALayerWidthSizable|kCALayerHeightSizable];
-    [self.layer setBackgroundColor:[NSColor blackColor].CGColor];
+    [self.layer setBackgroundColor:CGColorGetConstantColor(kCGColorBlack)];
 
     [self.layerHostView setLayer:self.layer];
     self.layerHostView.wantsLayer = YES;
