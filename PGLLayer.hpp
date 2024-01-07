@@ -9,6 +9,9 @@
 
 #include "NSObject.hpp"
 
+typedef struct _CGLContextObject* CGLContextObj;
+typedef struct _CGLPixelFormatObject* CGLPixelFormatObj;
+
 namespace PGL
 {
 
@@ -17,9 +20,8 @@ class Layer : public NS::Referencing<Layer>
 private:
     static Class kClass;
 
-    typedef struct _CGLContextObject* CGLContextObj;
 
-    static void drawInCGLContext(Layer* self, SEL cmd, CGLContextObj ctx, struct _CGLPixelFormatObject* pf, CFTimeInterval t, const struct CVTimeStamp* ts);
+    static void drawInCGLContext(Layer* self, SEL cmd, CGLContextObj ctx, CGLPixelFormatObj pf, CFTimeInterval t, const struct CVTimeStamp* ts);
 
 public:
     static class Layer* layer();
