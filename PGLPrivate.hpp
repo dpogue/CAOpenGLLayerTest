@@ -49,8 +49,10 @@
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-namespace PGL::Private
+namespace PGL
 {
+  namespace Private
+  {
     namespace Class
     {
         _PGL_PRIVATE_DEF_CLS(CAOpenGLLayer);
@@ -71,6 +73,7 @@ namespace PGL::Private
         _PGL_PRIVATE_DEF_SEL(drawInCGLContext_pixelFormat_forLayerTime_displayTime_,
             "drawInCGLContext:pixelFormat:forLayerTime:displayTime:");
     }
+  }
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------

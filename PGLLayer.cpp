@@ -1,6 +1,7 @@
 #define NS_PRIVATE_IMPLEMENTATION
 #define PGL_PRIVATE_IMPLEMENTATION
 
+#include <stdio.h>
 #include "PGLLayer.hpp"
 
 #ifndef __has_include
