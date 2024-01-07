@@ -31,6 +31,12 @@
 
 #include <type_traits>
 
+// Some compilers provide the capability to test if certain features are available. This macro provides a compatibility path for other compilers.
+#ifndef __has_feature
+#define __has_feature(x) 0
+#endif
+
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 namespace NS
@@ -145,7 +151,7 @@ _NS_INLINE _Class* NS::Copying<_Class, _Base>::copy() const
 template <class _Dst>
 _NS_INLINE _Dst NS::Object::bridgingCast(const void* pObj)
 {
-#ifdef __OBJC__
+#if __has_feature(objc_arc) && defined(__OBJC__)
     return (__bridge _Dst)pObj;
 #else
     return (_Dst)pObj;
@@ -168,7 +174,7 @@ _NS_INLINE constexpr bool NS::Object::doesRequireMsgSendStret()
 #elif defined(__arm__) || defined(__ppc__)
     constexpr size_t kStructLimit = sizeof(std::uintptr_t);
 
-    return std::is_class(_Type) && (sizeof(_Type) > kStructLimit);
+    return std::is_class<_Type>::value && (sizeof(_Type) > kStructLimit);
 #else
 #error "Unsupported architecture!"
 #endif

@@ -3,12 +3,20 @@
 
 #include "PGLLayer.hpp"
 
+#ifndef __has_include
+#define __has_include(x) 0
+#endif
+
 #if defined(__GNU_LIBOBJC__)
 #include <GL/gl.h>
 #else
 #define GL_SILENCE_DEPRECATION
 #include <QuartzCore/QuartzCore.h>
+#if __has_include(<OpenGL/gl3.h>)
 #include <OpenGL/gl3.h>
+#else
+#include <OpenGL/OpenGL.h>
+#endif
 #endif
 
 Class PGL::Layer::kClass = []{
