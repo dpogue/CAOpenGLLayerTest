@@ -15,7 +15,7 @@ namespace PGL
 class Layer : public NS::Referencing<Layer>
 {
 private:
-    static objc_class* kClass;
+    static Class kClass;
 
     static void drawInCGLContext(Layer* self, SEL cmd, struct _CGLContextObject* ctx, struct _CGLPixelFormatObject* pf, CFTimeInterval t, const struct CVTimeStamp* ts);
 

@@ -246,17 +246,6 @@ _NS_INLINE _Ret NS::Object::sendMessageSuper(const void* pObj, SEL selector, _Ar
 
     return (*pProc)(&super, selector, args...);
 #else // defined(__GNU_LIBOBJC__)
-#if (defined(__i386__) || defined(__x86_64__))
-    if constexpr (std::is_floating_point<_Ret>())
-    {
-        using SendMessageProcFpret = _Ret (*)(const struct objc_super*, SEL, _Args...);
-
-        const SendMessageProcFpret pProc = reinterpret_cast<SendMessageProcFpret>(&objc_msgSendSuper_fpret);
-
-        return (*pProc)(&super, selector, args...);
-    }
-    else
-#endif // ( defined( __i386__ )  || defined( __x86_64__ )  )
 #if !defined(__arm64__)
     if constexpr (doesRequireMsgSendStret<_Ret>())
     {

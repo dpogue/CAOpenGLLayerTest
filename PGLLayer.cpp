@@ -9,8 +9,8 @@
 #include <OpenGL/OpenGL.h>
 #endif
 
-objc_class* PGL::Layer::kClass = []{
-    objc_class* klass = objc_allocateClassPair((objc_class*)_PGL_PRIVATE_CLS(CAOpenGLLayer), "PGLLayer", 0);
+Class PGL::Layer::kClass = []{
+    Class klass = objc_allocateClassPair((objc_class*)_PGL_PRIVATE_CLS(CAOpenGLLayer), "PGLLayer", 0);
 
     Method m = nullptr;
     const char* me = nullptr;
