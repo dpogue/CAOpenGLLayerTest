@@ -17,7 +17,9 @@ class Layer : public NS::Referencing<Layer>
 private:
     static Class kClass;
 
-    static void drawInCGLContext(Layer* self, SEL cmd, struct _CGLContextObject* ctx, struct _CGLPixelFormatObject* pf, CFTimeInterval t, const struct CVTimeStamp* ts);
+    typedef struct _CGLContextObject* CGLContextObj;
+
+    static void drawInCGLContext(Layer* self, SEL cmd, CGLContextObj ctx, struct _CGLPixelFormatObject* pf, CFTimeInterval t, const struct CVTimeStamp* ts);
 
 public:
     static class Layer* layer();

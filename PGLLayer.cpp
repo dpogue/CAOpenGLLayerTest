@@ -6,11 +6,12 @@
 #if defined(__GNU_LIBOBJC__)
 #include <GL/gl.h>
 #else
-#include <OpenGL/OpenGL.h>
+#include <QuartzCore/QuartzCore.h>
+#include <OpenGL/gl3.h>
 #endif
 
 Class PGL::Layer::kClass = []{
-    Class klass = objc_allocateClassPair((objc_class*)_PGL_PRIVATE_CLS(CAOpenGLLayer), "PGLLayer", 0);
+    Class klass = objc_allocateClassPair((Class)_PGL_PRIVATE_CLS(CAOpenGLLayer), "PGLLayer", 0);
 
     Method m = nullptr;
     const char* me = nullptr;
@@ -26,7 +27,7 @@ Class PGL::Layer::kClass = []{
     return klass;
 }();
 
-void PGL::Layer::drawInCGLContext(PGL::Layer* self, SEL cmd, struct _CGLContextObject* ctx, struct _CGLPixelFormatObject* pf, CFTimeInterval t, const struct CVTimeStamp* ts)
+void PGL::Layer::drawInCGLContext(PGL::Layer* self, SEL cmd, CGLContextObj ctx, struct _CGLPixelFormatObject* pf, CFTimeInterval t, const struct CVTimeStamp* ts)
 {
 #if !defined(__GNU_LIBOBJC__)
     CGLSetCurrentContext(ctx);
