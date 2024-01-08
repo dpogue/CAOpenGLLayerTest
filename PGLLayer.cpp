@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include "PGLLayer.hpp"
+#include "type_encoder.hpp"
 
 #ifndef __has_include
 #define __has_include(x) 0
@@ -22,14 +23,7 @@
 Class PGL::Layer::kClass = []{
     Class klass = objc_allocateClassPair((Class)_PGL_PRIVATE_CLS(CAOpenGLLayer), "PGLLayer", 0);
 
-    Method m = nullptr;
-    const char* me = nullptr;
-
-    m = class_getInstanceMethod(class_getSuperclass(klass), _PGL_PRIVATE_SEL(drawInCGLContext_pixelFormat_forLayerTime_displayTime_));
-    me = method_getTypeEncoding(m);
-    class_addMethod(klass, _PGL_PRIVATE_SEL(drawInCGLContext_pixelFormat_forLayerTime_displayTime_), (IMP)&PGL::Layer::drawInCGLContext, me);
-
-    printf("%s -- %s\n", "drawInCGLContext:pixelFormat:forLayerTime:displayTime:", me);
+    class_addMethod(klass, _PGL_PRIVATE_SEL(drawInCGLContext_pixelFormat_forLayerTime_displayTime_), (IMP)&PGL::Layer::drawInCGLContext, encode_method(&PGL::Layer::drawInCGLContext));
 
     objc_registerClassPair(klass);
 

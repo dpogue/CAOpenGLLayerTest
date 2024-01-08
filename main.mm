@@ -47,7 +47,7 @@
     [self.layer setBackgroundColor:CGColorGetConstantColor(kCGColorBlack)];
 
     [self.layerHostView setLayer:self.layer];
-    self.layerHostView.wantsLayer = YES;
+    [self.layerHostView setWantsLayer:YES];
 
     [NSApp activateIgnoringOtherApps:YES];
 
