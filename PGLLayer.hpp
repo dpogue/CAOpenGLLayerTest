@@ -27,6 +27,7 @@ private:
 
 
     static void drawInCGLContext(Layer* self, SEL cmd, CGLContextObj ctx, CGLPixelFormatObj pf, CFTimeInterval t, const CVTimeStamp* ts);
+    static CGLPixelFormatObj copyCGLPixelFormatForDisplayMask(Layer* self, SEL cmd, uint32_t mask);
 
 public:
     static class Layer* layer();

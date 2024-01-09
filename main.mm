@@ -1,10 +1,14 @@
+#include <AvailabilityMacros.h>
 #import <Cocoa/Cocoa.h>
 #include <stdio.h>
 #include "PGLLayer.hpp"
 
 @class CALayer;
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
+<NSApplicationDelegate>
+#endif
 {
     NSWindow* _window;
     NSView* _layerHostView;
