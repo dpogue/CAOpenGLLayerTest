@@ -15,8 +15,8 @@
     CALayer* _layer;
 }
 @property (assign) IBOutlet NSWindow *window;
-@property (strong) IBOutlet NSView *layerHostView;
-@property (strong, nonatomic) CALayer *layer;
+@property (assign) IBOutlet NSView *layerHostView;
+@property (assign, nonatomic) CALayer *layer;
 @end
 
 @implementation AppDelegate
@@ -49,6 +49,7 @@
 #endif
     [self.layer setAutoresizingMask:kCALayerWidthSizable|kCALayerHeightSizable];
     [self.layer setBackgroundColor:CGColorGetConstantColor(kCGColorBlack)];
+    ((CAOpenGLLayer*)self.layer).asynchronous = YES;
 
     [self.layerHostView setLayer:self.layer];
     [self.layerHostView setWantsLayer:YES];
